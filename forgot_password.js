@@ -8,7 +8,7 @@ describe('bebo technologies', () => {
         // Click on India careers button.
         cy.findByRole('link',{name:'India Careers'}).click();
 
-        // Verify the url.
+        // Verify the url
         cy.url().should('eq','https://www.bebotechnologies.com/careers');
        
         // Click on "learning and development" and verify it highlights
