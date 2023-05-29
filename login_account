@@ -22,8 +22,7 @@ describe('facebook', () => {
       cy.findByLabelText('Month').select('Apr');
       cy.findByLabelText('Year').select('1999');
 
-      cy.findByText('Female').click();
-      cy.findByRole('button',{name:'Sign Up'}).click();
+      cy.findByText('Female').click()
     
     })
   })
