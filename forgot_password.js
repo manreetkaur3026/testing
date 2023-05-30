@@ -13,8 +13,9 @@ describe('bebo technologies', () => {
        
         // Click on "learning and development" and verify it highlights
         cy.contains('Learning and development').click();
+        
         cy.contains('Learning and development').should('have.class', 'active');
-
+    
         // Verify Job title and Employment Type
         cy.findByRole('heading',{name:'Learning and Development Content Designer 4225 Apply Now'}).should('be.visible');
 
