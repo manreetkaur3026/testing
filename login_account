@@ -9,6 +9,8 @@ describe('facebook', () => {
     
       cy.findByTestId('royal_email').type('niverma@gmail.com');
       cy.findByTestId('royal_pass').type('Niharika890');
+      cy.findByTestId('royal_pass').type('Niharika890');
+      
            
       cy.findByTestId('open-registration-form-button').click();
       
