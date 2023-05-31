@@ -1,0 +1,35 @@
+describe('airtable', () => {
+    beforeEach(() => {
+        cy.visit('https://www.airtable.com/');
+    })
+    it('verify base history', () => {
+        cy.findByRole('link',{name:'Sign in'}).click();
+        cy.get('.pb3').should('be.visible').then($emailInput => {
+            if ($emailInput.is(':visible')) {
+              // Enter the email address
+              cy.get('#emailLogin').type('pihoitraureipoi-7422@yopmail.com');
+      
+              // Click on the "Continue" button
+              cy.get('.pointer').click();
+            }
+        
+            else {
+                cy.wrap($emailInput).type('pihoitraureipoi-7422@yopmail.com');
+                cy.get('#passwordLogin').type('Sept@1234');
+            }
+            cy.get('#passwordLogin').type('Sept@1234');
+            cy.findByRole('button',{name:'Sign in'}).click();
+            cy.findByRole('listitem',{name:'DIa'}).click();
+            cy.findByRole('button',{name:'Base history'}).trigger('mouseover');
+            cy.findByRole('button',{name:'Base history'}).should('be.visible').click();
+            cy.findByRole('button',{name:'Undo'}).should('be.visible');
+            cy.findByRole('button',{name:'Redo'}).should('be.visible');
+            cy.findByRole('button',{name:'Snapshots'}).should('be.visible');
+            cy.findByRole('button',{name:'Record revision history'}).should('be.visible');
+            cy.findByRole('button',{name:'Trash'}).should('be.visible');
+            cy.get('body').type('{esc}');
+            
+
+            });
+        })
+    })
