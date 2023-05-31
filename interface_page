@@ -1,0 +1,62 @@
+describe('airtable', () => {
+    beforeEach(() => {
+        cy.visit('https://www.airtable.com/');
+    })
+    it('verify base history', () => {
+        cy.findByRole('link',{name:'Sign in'}).click();
+        cy.get('.pb3').should('be.visible').then($emailInput => {
+            if ($emailInput.is(':visible')) {
+              // Enter the email address
+              cy.get('#emailLogin').type('pihoitraureipoi-7422@yopmail.com');
+      
+              // Click on the "Continue" button
+              cy.get('.pointer').click();
+            }
+        
+            else {
+                cy.wrap($emailInput).type('pihoitraureipoi-7422@yopmail.com');
+                cy.get('#passwordLogin').type('Sept@1234');
+            }
+            cy.get('#passwordLogin').type('Sept@1234');
+            cy.findByRole('button',{name:'Sign in'}).click();
+            cy.findByRole('listitem',{name:'dla n'}).click();
+            cy.findByRole('link',{name:'Interfaces'}).click();
+            cy.contains('Create new').click();
+            cy.contains('Name your interface').should('be.visible');
+            cy.findByRole('button',{name:'Next'}).click();
+            cy.findByRole('heading',{name:'Choose a layout'}).should('be.visible');
+            //cy.contains('List Organize and prioritize.').should('have.class', 'active');
+            cy.findByRole('option',{name:'List Organize and prioritize.'}).should('have.css', 'color', 'rgb(77, 77, 77)')
+
+            cy.findByRole('option',{name:'Record review Review details of many records from one table.'}).click();
+
+            // Verify layout change on right side when user clicks on record review page
+            cy.findByRole('option',{name:'Record review Review details of many records from one table.'}).should('be.visible');
+        
+            // Click on Gallery tab visible on left sidebar
+            cy.findByRole('option',{name:'Gallery Visualize image-heavy records.'}).click();
+        
+            // Verify layout change on right side
+            cy.findByRole('option',{name:'Gallery Visualize image-heavy records.'}).should('be.visible');
+        
+        
+            // Click on next button
+            cy.get('.ml-auto > .pointer').click();
+          
+        
+            // Verify user is on "Connect to a table" page
+            cy.findByRole('heading',{name:'Connect to a table'}).should('be.visible');
+        
+            // Projects is selected as default in dropdown list
+            cy.findByRole('button',{name:'Table 1'}).should('be.visible');
+        
+            // Click on cross icon
+            cy.get('.items-center.css-5138s2 > .flex-none').click();
+        
+            // Verify user navigates to interfaces page
+            cy.contains('Interfaces').should('be.visible');
+
+
+            });
+        })
+    })
