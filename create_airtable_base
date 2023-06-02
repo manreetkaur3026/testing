@@ -3,6 +3,7 @@ describe('Automating Airtable site',()=>{
     before(()=>{
         //login to homepage
         cy.airtablelogin(example.email,example.password1)
+        hy
     })
     it('Creating new interface', () => {
         //Navigate to interfaces
